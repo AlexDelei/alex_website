@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="../static/files/css/bootstrap.min.css" rel="stylesheet">
+    <script src="../static/files/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="container">
+        {% include 'navbar.html' %}
+        <section class="row">
+            <div class="col-md-4">
+                <h3>create an account</h3>
+                <span style="color:green;">{{success}}</span>
+                <span style="color:red">{{error}}</span>
+                <form action="/signup" method="post">
+                    <input type="text" name="username" placeholder="your username" class="form-control"> <br>
+
+                    <input type="email" name="email" placeholder="your email" class="form-control"> <br>
+
+                    <input type="tel" name="phone" placeholder="your phone" class="form-control"> <br>
+
+                    <input type="password" name="password1" placeholder="your password" class="form-control"> <br>
+
+                    <input type="password" name="password2" placeholder="your password" class="form-control"> <br>
+
+                    <input type="submit" name="Sign Up" class="btn btn-info">
+
+
+                </form>
+                <br>
+                <a href="/signin">Already have an account?, Login</a>
+            </div>
+
+        </section>
+        {% include 'footer.html' %}
+
+    </div>
+
+
+
+
+</body>
+
+</html>

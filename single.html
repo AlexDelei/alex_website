@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="../static/files/css/bootstrap.min.css">
+    <script src="../static/files/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+    <div class="container-fluid">
+        {% include 'navbar.html' %}
+        <section class="row">
+            <div class="col-md-4">
+                <img src="../static/files/images/{{ product[5]}}" alt="" height="300" width="300"
+                    class="img-thumbnail shadow p-4"><br><br>
+                <h3>{{ product[1]}}</h3>
+            </div>
+            <div class="col-md-8">
+                <p class="text-muted">{{product[2]}}</p>
+                <h4 class="text-warning">KES {{product[3]}}</h4>
+                <b class="text-danger">Category: {{product[4]}}</b>
+            </div>
+        </section>
+
+        <section class="row">
+            <div class="col-md-6">
+                {% if session['key'] %}
+                <form action="/mpesa" method="post">
+                    <input type="text" class="form-control" name="phone" placeholder="Enter Phone Number"><br>
+                    <input type="hidden" name="id" value="{{ product[0]}}">
+                    <label for="amount">Amount to pay</label>
+                    <input type="number" name="amount" class="form-control" readonly value="{{ product [3]}}"><br>
+                    <input type="submit" value="Pay now" class="btn btn-dark">
+                </form>
+                {% endif %}
+            </div>
+        </section>
+        <br>
+        <section class="row">
+            {% for similarproduct in similarproducts %}
+            <div class="col-md-3">
+                <img src="../static/files/images/{{similarproduct[5]}}" alt="" height="200">
+                <br>
+                <b>{{similarproduct[1]}}</b>
+                <p class="text-muted">KES {{similarproduct[3]}}</p>
+
+                <a href="/single_item/{{similarproduct[0]}}" class="btn btn-warning">Buy Now</a>
+            </div>
+            {% endfor %}
+        </section>
+    </div>
+</body>
+
+</html>
